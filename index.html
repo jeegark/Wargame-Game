@@ -1,0 +1,188 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Grey Zone Grid | Energy Security Wargame</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Space+Grotesk:wght@400;500;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css?v=20260312a" />
+  </head>
+  <body>
+    <div class="app-shell">
+      <header class="hero">
+        <div class="hero-copy">
+          <p class="eyebrow">Interactive Report Conversion</p>
+          <h1>Grey Zone Grid</h1>
+          <p class="hero-dek">
+            A playable UK energy-security crisis game built from RenewableUK's
+            March 2026 report on winter wargaming, hybrid attacks, and the
+            rising cost of fragile resilience.
+          </p>
+          <div class="hero-actions">
+            <button class="primary-button" id="jumpToGame" type="button">
+              Enter Control Room
+            </button>
+            <a
+              class="secondary-link"
+              href="https://www.renewableuk.com/media/pqobbk3c/new-threats-and-new-tools-reinventing-energy-security-for-an-era-of-instability.pdf"
+              target="_blank"
+              rel="noreferrer"
+            >
+              Open source report
+            </a>
+          </div>
+        </div>
+
+        <div class="hero-side">
+          <div class="schematic-card">
+            <p class="mini-label">Exercise Spine</p>
+            <div class="schematic-grid" aria-hidden="true">
+              <span class="schematic-node node-gas"></span>
+              <span class="schematic-node node-grid"></span>
+              <span class="schematic-node node-wind"></span>
+              <span class="schematic-node node-terminal"></span>
+              <span class="schematic-line line-one"></span>
+              <span class="schematic-line line-two"></span>
+              <span class="schematic-line line-three"></span>
+            </div>
+            <ul class="scenario-list">
+              <li>North Sea gas-pipeline sabotage</li>
+              <li>Compromised wind-farm software update</li>
+              <li>Malware at a gas import terminal</li>
+            </ul>
+          </div>
+
+          <div class="hero-stat-grid">
+            <article class="hero-stat">
+              <span class="mini-label">Winter context</span>
+              <strong>Coldest January in five years</strong>
+            </article>
+            <article class="hero-stat">
+              <span class="mini-label">Strategic tension</span>
+              <strong>Gas market near 2022 stress levels</strong>
+            </article>
+            <article class="hero-stat">
+              <span class="mini-label">Core dilemma</span>
+              <strong>Protect supply without burning trust or money</strong>
+            </article>
+          </div>
+        </div>
+      </header>
+
+      <main class="control-room" id="game">
+        <section class="metric-strip" aria-label="Current resilience scores">
+          <article class="metric-card metric-stability">
+            <div class="metric-head">
+              <span class="metric-label">System Stability</span>
+              <span class="metric-value" id="metric-stability-value">62</span>
+            </div>
+            <div class="metric-bar">
+              <span class="metric-fill" id="metric-stability-fill"></span>
+            </div>
+            <p class="metric-copy" id="metric-stability-copy">
+              Can the system keep flowing without disorder?
+            </p>
+          </article>
+
+          <article class="metric-card metric-trust">
+            <div class="metric-head">
+              <span class="metric-label">Public Trust</span>
+              <span class="metric-value" id="metric-trust-value">55</span>
+            </div>
+            <div class="metric-bar">
+              <span class="metric-fill" id="metric-trust-fill"></span>
+            </div>
+            <p class="metric-copy" id="metric-trust-copy">
+              Will households and firms accept difficult asks?
+            </p>
+          </article>
+
+          <article class="metric-card metric-fiscal">
+            <div class="metric-head">
+              <span class="metric-label">Fiscal Headroom</span>
+              <span class="metric-value" id="metric-fiscal-value">54</span>
+            </div>
+            <div class="metric-bar">
+              <span class="metric-fill" id="metric-fiscal-fill"></span>
+            </div>
+            <p class="metric-copy" id="metric-fiscal-copy">
+              How much room is left before crisis spending bites?
+            </p>
+          </article>
+
+          <article class="metric-card metric-clarity">
+            <div class="metric-head">
+              <span class="metric-label">Attribution Clarity</span>
+              <span class="metric-value" id="metric-clarity-value">38</span>
+            </div>
+            <div class="metric-bar">
+              <span class="metric-fill" id="metric-clarity-fill"></span>
+            </div>
+            <p class="metric-copy" id="metric-clarity-copy">
+              How confident are you about who is acting and how?
+            </p>
+          </article>
+        </section>
+
+        <section class="progress-panel">
+          <div class="progress-head">
+            <p class="mini-label">Exercise Progress</p>
+            <p class="progress-text" id="progressText">Choose two tools to prepare for winter.</p>
+          </div>
+          <div class="progress-track" aria-hidden="true">
+            <span class="progress-fill" id="progressFill"></span>
+          </div>
+        </section>
+
+        <section class="room-grid">
+          <section class="stage-panel" aria-live="polite">
+            <div class="stage-header">
+              <span class="phase-chip" id="phaseChip">Preparation</span>
+              <span class="event-counter" id="eventCounter">0 / 6 decisions</span>
+            </div>
+            <h2 class="stage-title" id="stageTitle">Build your crisis posture</h2>
+            <p class="stage-lead" id="stageLead">
+              Choose two policy tools from the report before the winter shock
+              sequence begins.
+            </p>
+            <div class="signal-row" id="signalRow"></div>
+            <div class="stage-body" id="stageBody"></div>
+          </section>
+
+          <aside class="sidebar">
+            <section class="panel">
+              <div class="panel-head">
+                <h3>Prepared Tools</h3>
+                <span class="panel-meta" id="toolCounter">0 / 2 selected</span>
+              </div>
+              <div class="tool-summary" id="toolSummary"></div>
+            </section>
+
+            <section class="panel">
+              <div class="panel-head">
+                <h3>Decision Log</h3>
+                <span class="panel-meta">Newest first</span>
+              </div>
+              <div class="log-list" id="decisionLog"></div>
+            </section>
+
+            <section class="panel">
+              <div class="panel-head">
+                <h3>Report Spine</h3>
+                <span class="panel-meta">Scenario grounding</span>
+              </div>
+              <div class="source-list" id="sourceList"></div>
+            </section>
+          </aside>
+        </section>
+      </main>
+    </div>
+
+    <script src="app.js?v=20260312a"></script>
+  </body>
+</html>
